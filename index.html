@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>penpocket</title>
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500;700&family=DotGothic16&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --lime: #b6ff00;
+  --pink: #ff2d78;
+  --cyan: #00e5ff;
+  --yellow: #ffe600;
+}
+
+body {
+  background: #f0ede6;
+  color: #1c2b3a;
+  min-height: 100vh;
+  overflow-x: hidden;
+  cursor: crosshair;
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  background: #3a4a56;
+  border-bottom: 1px solid #2e3c47;
+  padding: .9rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-logo { font-family: 'Inconsolata', monospace; font-size: .9rem; color: #c0d0da; text-decoration: none; }
+.nav-links { display: flex; gap: 1.5rem; list-style: none; }
+.nav-links a { font-family: 'Inconsolata', monospace; font-size: .8rem; color: #6a8090; text-decoration: none; transition: color .15s; }
+.nav-links a:hover { color: #c0d0da; }
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+}
+
+.hero-left {
+  background: #1c2b3a;
+  padding: 4rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-left::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(168,196,212,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168,196,212,.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.hero-deco {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-family: 'Inconsolata', monospace;
+  font-size: .68rem;
+  color: rgba(168,196,212,.25);
+  line-height: 1.8;
+  text-align: right;
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  font-family: 'DotGothic16', monospace;
+  font-size: .75rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  line-height: .95;
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.hero-title .t1 { color: #a8c4d4; display: block; }
+.hero-title .t2 { color: #fff; display: block; }
+.hero-title .t3 { color: #7a9bb0; display: block; }
+
+.hero-sub {
+  font-family: 'Inconsolata', monospace;
+  font-size: .82rem;
+  color: #888;
+  line-height: 1.7;
+  position: relative;
+  max-width: 340px;
+}
+
+.hero-right {
+  background: #f0ede6;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-right-label {
+  font-family: 'Inconsolata', monospace;
+  font-size: .72rem;
+  color: rgba(0,0,0,.35);
+  margin-bottom: .8rem;
+}
+
+.hero-right-content { position: relative; }
+
+.recent-list { display: flex; flex-direction: column; }
+
+.recent-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: .6rem 0;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  font-family: 'Inconsolata', monospace;
+}
+
+.recent-item:last-child { border-bottom: none; }
+.recent-name { font-size: .82rem; color: #222; }
+.recent-date { font-size: .72rem; color: #aaa; }
+
+.cards-wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 2px solid #1c2b3a;
+}
+
+.card {
+  background: #f0ede6;
+  padding: 2rem 1.8rem;
+  text-decoration: none;
+  color: inherit;
+  border-right: 1px solid #e4e0d8;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  transition: background .15s;
+  position: relative;
+}
+
+.card:last-child { border-right: none; }
+.card:hover { background: #e4e0d8; }
+
+.card-name { font-family: 'Inconsolata', monospace; font-size: 1rem; font-weight: 500; color: #1c2b3a; }
+.card-sub { font-family: 'Inconsolata', monospace; font-size: .8rem; color: #8a8278; }
+.card-count { font-family: 'Inconsolata', monospace; font-size: .72rem; color: #b0ab9e; margin-top: .8rem; }
+
+.card-arrow {
+  position: absolute;
+  bottom: 1.2rem;
+  right: 1.2rem;
+  font-size: 1.1rem;
+  opacity: .2;
+  transition: opacity .2s, transform .2s;
+}
+
+.card:hover .card-arrow { opacity: 1; transform: translate(3px, -3px); }
+
+footer {
+  margin-top: auto;
+  padding: 1.2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  background: #3a4a56;
+  font-size: .75rem;
+  color: #6a8090;
+}
+
+footer a { color: #6a8090; text-decoration: none; }
+footer a:hover { color: #c0d0da; }
+
+@media(max-width:768px){
+  nav{padding:.8rem 1rem}
+  .nav-links{gap:1rem}
+  .nav-links a{font-size:.72rem}
+  .hero{grid-template-columns:1fr}
+  .hero-right{min-height:180px;justify-content:center;padding:2rem}
+  .hero-left{padding:3rem 1.5rem}
+  .cards-wrap{grid-template-columns:1fr}
+  .card{border-right:none;border-bottom:1px solid #e0e0e0}
+  footer{padding:1rem 1.5rem;flex-direction:column;gap:.4rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+  <svg width="10" height="34" viewBox="0 0 14 44" fill="none" style="vertical-align:middle;margin-right:8px">
+    <rect x="3" y="1" width="8" height="6" rx="4" fill="#1c2b3a"/>
+    <rect x="4" y="6" width="6" height="24" fill="#1c2b3a"/>
+    <rect x="3" y="14" width="8" height="2" rx="1" fill="#a8c4d4" opacity=".6"/>
+    <path d="M4 30 L7 30 L10 30 L8.5 38 Q7 42 5.5 38Z" fill="#a8c4d4"/>
+    <line x1="7" y1="38" x2="7" y2="43" stroke="#7a9bb0" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+  <span style="vertical-align:middle">penpocket</span>
+</a>
+  <ul class="nav-links">
+    <li><a href="collection.html">collection</a></li>
+    <li><a href="brands.html">brands</a></li>
+    <li><a href="wishlist.html">wishlist</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">// mono121's stationery notes</p>
+    <h1 class="hero-title">
+      <span class="t1">文房具</span>
+      <span class="t2">PERSONAL</span>
+      <span class="t3">MEMO</span>
+    </h1>
+    <p class="hero-sub">万年筆がメインだけどボールペンやシャープも少し。使った感想とか気になってるやつとかをまとめてる。更新は気分次第。</p>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-content">
+      <p class="hero-right-label">// recently bought</p>
+      <div class="recent-list">
+        <div class="recent-item">
+          <span class="recent-name">Pilot Custom 742</span>
+          <span class="recent-date">2024-12</span>
+        </div>
+        <div class="recent-item">
+          <span class="recent-name">Iroshizuku Tsuki-yo</span>
+          <span class="recent-date">2024-11</span>
+        </div>
+        <div class="recent-item">
+          <span class="recent-name">TWSBI Diamond 580AL</span>
+          <span class="recent-date">2024-10</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cards-wrap">
+  <a href="collection.html" class="card">
+    <span class="card-name">collection</span>
+    <span class="card-sub">今手元にあるもの</span>
+    <span class="card-count">6 items</span>
+    <span class="card-arrow">↗</span>
+  </a>
+  <a href="brands.html" class="card">
+    <span class="card-name">brands</span>
+    <span class="card-sub">気に入ってるメーカー</span>
+    <span class="card-count">5 brands</span>
+    <span class="card-arrow">↗</span>
+  </a>
+  <a href="wishlist.html" class="card">
+    <span class="card-name">wishlist</span>
+    <span class="card-sub">いつか欲しいリスト</span>
+    <span class="card-count">6 items</span>
+    <span class="card-arrow">↗</span>
+  </a>
+</div>
+
+<footer>
+  <span>© 2024 mono121</span>
+  <a href="https://github.com/mono121">github.com/mono121</a>
+</footer>
+
+</body>
+</html>

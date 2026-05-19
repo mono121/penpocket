@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>collection — penpocket</title>
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500;700&family=DotGothic16&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inconsolata',monospace;background:#f0ede6;color:#1c2b3a;min-height:100vh;cursor:crosshair;display:flex;flex-direction:column}
+nav{background:#3a4a56;border-bottom:1px solid #2e3c47;padding:.9rem 1.5rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.nav-logo{font-size:.9rem;color:#c0d0da;text-decoration:none}
+.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links a{font-size:.8rem;color:#6a8090;text-decoration:none;transition:color .15s}
+.nav-links a:hover,.nav-links a.active{color:#c0d0da}
+.page-header{background:#1c2b3a;padding:2rem 3rem 2rem;position:relative;overflow:hidden}
+.page-header::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(168,196,212,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(168,196,212,.06) 1px,transparent 1px);background-size:28px 28px}
+.page-header-inner{position:relative}
+.page-eyebrow{font-family:'DotGothic16',monospace;font-size:.72rem;color:#555;margin-bottom:1rem}
+.page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);color:#a8c4d4;line-height:1;margin-bottom:.8rem}
+.page-desc{font-size:.8rem;color:#6a8090;line-height:1.7}
+.filter-bar{padding:1rem 2rem;display:flex;gap:.5rem;align-items:center;border-bottom:1px solid #e4e0d8;flex-wrap:wrap}
+.filter-label{font-size:.68rem;color:#b0ab9e;margin-right:.5rem}
+.filter-btn{font-size:.7rem;padding:.25rem .8rem;border:1px solid #e4e0d8;background:transparent;color:#8a8278;cursor:crosshair;transition:all .15s}
+.filter-btn:hover,.filter-btn.active{border-color:#1c2b3a;color:#1c2b3a;background:#e4e0d8}
+.items{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e4e0d8}
+.item{background:#f0ede6;padding:2rem 1.8rem;display:flex;flex-direction:column;gap:.4rem;transition:background .15s}
+.item:hover{background:#e8e4dc}
+.item-cat{font-size:.65rem;letter-spacing:.15em;color:#b0ab9e}
+.item-brand{font-size:.72rem;color:#7a9bb0;margin-top:.2rem}
+.item-name{font-size:1rem;font-weight:500;color:#1c2b3a}
+.item-model{font-size:.72rem;color:#8a8278}
+.item-desc{font-size:.78rem;color:#8a8278;line-height:1.75;margin-top:.5rem}
+.stars{display:flex;gap:2px;margin-top:.8rem}
+.star{width:8px;height:8px;background:#1c2b3a;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.star.empty{background:#e4e0d8}
+footer{background:#3a4a56;padding:1.2rem 2rem;display:flex;justify-content:space-between;font-size:.75rem;color:#6a8090}
+footer a{color:#6a8090;text-decoration:none}
+footer a:hover{color:#c0d0da}
+
+@media(max-width:768px){
+  nav{padding:.8rem 1rem}
+  .nav-links{gap:1rem}
+  .nav-links a{font-size:.72rem}
+  .page-header{padding:1.5rem 1.5rem}
+  .items{grid-template-columns:1fr}
+  .filter-bar{padding:.8rem 1rem}
+  footer{padding:1rem 1.5rem;flex-direction:column;gap:.4rem}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="10" height="34" viewBox="0 0 14 44" fill="none" style="vertical-align:middle;margin-right:8px">
+      <rect x="3" y="1" width="8" height="6" rx="4" fill="#1c2b3a"/>
+      <rect x="4" y="6" width="6" height="24" fill="#1c2b3a"/>
+      <rect x="3" y="14" width="8" height="2" rx="1" fill="#a8c4d4" opacity=".6"/>
+      <path d="M4 30 L7 30 L10 30 L8.5 38 Q7 42 5.5 38Z" fill="#a8c4d4"/>
+      <line x1="7" y1="38" x2="7" y2="43" stroke="#7a9bb0" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <span style="vertical-align:middle">penpocket</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="collection.html" class="active">collection</a></li>
+    <li><a href="brands.html">brands</a></li>
+    <li><a href="wishlist.html">wishlist</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <h1 class="page-title">collection</h1>
+    <p class="page-desc">実際に持っている文房具と正直な感想。</p>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <span class="filter-label">filter:</span>
+  <button class="filter-btn active" onclick="filter('all',this)">all</button>
+  <button class="filter-btn" onclick="filter('fountain',this)">万年筆</button>
+  <button class="filter-btn" onclick="filter('ball',this)">ボールペン</button>
+  <button class="filter-btn" onclick="filter('pencil',this)">シャープ/鉛筆</button>
+  <button class="filter-btn" onclick="filter('ink',this)">インク</button>
+</div>
+
+<div class="items" id="grid">
+  <div class="item" data-cat="fountain">
+    <span class="item-cat">// 万年筆</span>
+    <span class="item-brand">Pilot</span>
+    <span class="item-name">Custom 742</span>
+    <span class="item-model">Soft Fine / 赤軸</span>
+    <p class="item-desc">柔らかめのニブが筆圧に応じて変化する。毎日使ってる一本。</p>
+    <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+  </div>
+  <div class="item" data-cat="ball">
+    <span class="item-cat">// ボールペン</span>
+    <span class="item-brand">Lamy</span>
+    <span class="item-name">Safari</span>
+    <span class="item-model">Charcoal / M16</span>
+    <p class="item-desc">三角グリップが持ちやすい。サブ使いに重宝してる。</p>
+    <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star empty"></div></div>
+  </div>
+  <div class="item" data-cat="pencil">
+    <span class="item-cat">// シャープペンシル</span>
+    <span class="item-brand">Pentel</span>
+    <span class="item-name">GraphGear 1000</span>
+    <span class="item-model">0.5mm / ダークブルー</span>
+    <p class="item-desc">ノック時に芯が回転して常に細い線が引ける。製図用だけど普段使いにも。</p>
+    <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+  </div>
+  <div class="item" data-cat="ink">
+    <span class="item-cat">// インク</span>
+    <span class="item-brand">Pilot Iroshizuku</span>
+    <span class="item-name">Tsuki-yo</span>
+    <span class="item-model">月夜 / 50ml</span>
+    <p class="item-desc">深い藍色に緑みがかったトーン。夜に書くと雰囲気が出る。</p>
+    <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+  </div>
+  <div class="item" data-cat="fountain">
+    <span class="item-cat">// 万年筆</span>
+    <span class="item-brand">TWSBI</span>
+    <span class="item-name">Diamond 580AL</span>
+    <span class="item-model">Fine / スモーク</span>
+    <p class="item-desc">透明軸でインク残量が見えるのが楽しい。ピストン充填で大容量。</p>
+    <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star empty"></div></div>
+  </div>
+  <div class="item" data-cat="pencil">
+    <span class="item-cat">// 鉛筆</span>
+    <span class="item-brand">Mitsubishi</span>
+    <span class="item-name">Hi-Uni</span>
+    <span class="item-model">HB / 12本入</span>
+    <p class="item-desc">国産最高級鉛筆。芯のなめらかさが段違い。</p>
+    <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+  </div>
+</div>
+
+<footer>
+  <span>© 2024 mono121</span>
+  <a href="https://github.com/mono121">github.com/mono121</a>
+</footer>
+<script>
+function filter(cat,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.item').forEach(el=>{
+    el.style.display=(cat==='all'||el.dataset.cat===cat)?'flex':'none';
+  });
+}
+</script>
+</body>
+</html>
