@@ -6,8 +6,6 @@ acquired: 2024
 color: グリーン
 nib: F
 commemoration: マイスターシュテュック誕生100周年
-tags:
-- 限定品
 custom_fields:
 - label: 製品番号
   value: MB131341
