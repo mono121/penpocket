@@ -3,7 +3,7 @@ title: グラマー
 brand: platinum
 type: 万年筆
 acquired: 2025
-nib: M（中字）
+nib: M
 tags:
 - ヴィンテージ
 custom_fields:

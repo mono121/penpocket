@@ -4,7 +4,7 @@ brand: pilot
 type: 万年筆
 acquired: 2025
 color: マスタードイエロー
-nib: M（中字）
+nib: M
 tags:
 - 初期型
 ---

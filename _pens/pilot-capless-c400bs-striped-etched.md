@@ -3,7 +3,7 @@ title: キャップレス C-400BS ストライプ蝕刻
 brand: pilot
 type: 万年筆
 acquired: 2026
-nib: F（細字）
+nib: F
 tags:
 - ヴィンテージ
 custom_fields:
