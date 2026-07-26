@@ -4,6 +4,9 @@ brand: leonardo
 type: 万年筆
 acquired: 2018
 nib: EF
+color: 黄〜橙のマーブル
+mechanism: コンバーター式
+body: レジン
 limited: 世界43本
 tags:
 - 限定品
