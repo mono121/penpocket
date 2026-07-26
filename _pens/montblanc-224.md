@@ -9,6 +9,8 @@ body: 樹脂軸／ゴールドキャップ
 tags:
 - ヴィンテージ
 custom_fields:
+- label: 製造年代
+  value: 1970年代（224系の生産期から推定）
 - label: ペン先材質
   value: 18K（750刻印のみ。字幅の刻印は確認できず）
 - label: ペン先形状

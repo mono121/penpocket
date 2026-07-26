@@ -10,6 +10,8 @@ body: 樹脂
 tags:
 - ヴィンテージ
 custom_fields:
+- label: 製造年代
+  value: 1980年代後半〜1990年代（14C・4810刻印の世代から推定）
 - label: ペン先材質
   value: 14C（4810刻印）
 - label: キャップリング刻印
