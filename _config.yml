@@ -3,8 +3,8 @@ description: 万年筆・ボールペン・シャープペンシルの収集記�
 lang: ja
 
 # GitHub Pages で公開する場合はリポジトリ名に合わせる
-# 例: https://<user>.github.io/pen-collection/ なら baseurl: "/pen-collection"
-baseurl: ""
+# 公開先: https://mono121.github.io/penpocket/
+baseurl: "/penpocket"
 url: ""
 
 collections:
