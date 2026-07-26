@@ -5,8 +5,6 @@ type: ローラーボール
 acquired: 2016
 color: ホワイト
 custom_fields:
-- label: 所有者記録
-  value: LAMY Tokyo Aoyama限定として認識
-- label: 確認状況
-  value: 公式アーカイブで限定形態を確認できず
+- label: 販売形態
+  value: LAMY青山店（閉店）のプレオープンで販売。箱・シールに限定表記はなし
 ---

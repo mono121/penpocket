@@ -7,6 +7,6 @@ color: グレー
 tags:
 - 透明軸
 custom_fields:
-- label: 確認事項
-  value: K200/K205の判別と正式カラー名は未確定
+- label: トリム
+  value: ゴールド（K205ではなくK200であることの判別点）
 ---
