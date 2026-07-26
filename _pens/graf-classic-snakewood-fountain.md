@@ -3,6 +3,9 @@ title: Classic Limited Edition Snakewood
 brand: graf-von-faber-castell
 type: 万年筆
 acquired: 2025
+color: ブラウン（スネークウッド）
+nib: EF
+mechanism: コンバーター式
 limited: 世界1,761本（筆記具の種類ごと）
 tags:
 - 限定品
