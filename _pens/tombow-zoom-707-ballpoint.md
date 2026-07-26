@@ -1,12 +1,17 @@
 ---
 title: ZOOM 707
 brand: tombow
-type: ボールペン
+type: ペンシル
 acquired: 2026
-line_width: 0.7
-mechanism: ツイスト式
+color: ホワイトグリーン
+line_width: 0.5
+mechanism: ノック式
 body: 真鍮軸／ラバーグリップ
-ink_name: BR-VS33（油性）
+accessories:
+- ギフトケース
+custom_fields:
+- label: 品番
+  value: SH-ZS04AZ
 ---
 
 

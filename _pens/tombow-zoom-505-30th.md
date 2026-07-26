@@ -10,6 +10,8 @@ body: 研磨加工とアルマイト加工によるミラーコート仕上げ
 tags:
 - 限定品
 custom_fields:
+- label: インク
+  value: 水性
 - label: 発売日
   value: 2016年10月21日
 ---
