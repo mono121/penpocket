@@ -286,6 +286,16 @@ a { color: var(--ink-blue); text-underline-offset: 3px; }
 .note ul { margin: 0 0 1rem; padding-left: 1.2rem; }
 .note li { margin-bottom: 0.3rem; }
 
+/* 一覧のタグ表示と見た目を揃える */
+.note code {
+  font-family: var(--font-data);
+  font-size: 0.82em;
+  color: var(--muted);
+  background: var(--tag-bg);
+  border-radius: 3px;
+  padding: 0.08em 0.4em;
+}
+
 /* ---------- stats ---------- */
 
 .stats { padding: 2.5rem 0 5rem; }
