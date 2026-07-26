@@ -15,4 +15,6 @@ custom_fields:
   value: 露出型
 - label: キャップ
   value: かぶせ式（嵌合式）
+- label: キャップリング刻印
+  value: MONTBLANC 224 GERMANY
 ---

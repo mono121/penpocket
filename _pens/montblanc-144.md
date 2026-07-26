@@ -4,6 +4,7 @@ brand: montblanc
 type: 万年筆
 acquired: 2020
 nib: EF
+color: ブラック
 mechanism: コンバーター式
 body: 樹脂
 tags:
