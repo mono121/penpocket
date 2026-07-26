@@ -54,7 +54,8 @@ title: 一覧
               {% if pen.line_width %}<span>{{ pen.line_width }}mm</span>{% endif %}
               {% if pen.mechanism %}<span>{{ pen.mechanism }}</span>{% endif %}
             </p>
-            {% if pen.tags %}<p class="entry__tags">{% for t in pen.tags %}<span>{{ t }}</span>{% endfor %}</p>{% endif %}
+            {% comment %}Jekyll は tags を [] で補うため、空配列が真になる Liquid では件数で判定する{% endcomment %}
+            {% if pen.tags.size > 0 %}<p class="entry__tags">{% for t in pen.tags %}<span>{{ t }}</span>{% endfor %}</p>{% endif %}
           </div>
         </div>
       </a>

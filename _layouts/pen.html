@@ -19,7 +19,8 @@ layout: default
       {% if page.accessories %}<div class="specs__row"><dt class="specs__key">付属品</dt><dd class="specs__val" style="margin:0">{{ page.accessories | join: " / " }}</dd></div>{% endif %}
       {% if page.ink_name %}<div class="specs__row"><dt class="specs__key">インク・芯</dt><dd class="specs__val" style="margin:0">{{ page.ink_name }}</dd></div>{% endif %}
       <div class="specs__row"><dt class="specs__key">入手</dt><dd class="specs__val" style="margin:0">{{ page.acquired }}年</dd></div>
-      {% if page.tags %}<div class="specs__row"><dt class="specs__key">タグ</dt><dd class="specs__val" style="margin:0">{{ page.tags | join: " / " }}</dd></div>{% endif %}
+      {% comment %}Jekyll は tags を [] で補うため、空配列が真になる Liquid では件数で判定する{% endcomment %}
+      {% if page.tags.size > 0 %}<div class="specs__row"><dt class="specs__key">タグ</dt><dd class="specs__val" style="margin:0">{{ page.tags | join: " / " }}</dd></div>{% endif %}
       {% if page.custom_fields %}
         {% for item in page.custom_fields %}
           <div class="specs__row"><dt class="specs__key">{{ item.label }}</dt><dd class="specs__val" style="margin:0">{{ item.value }}</dd></div>
