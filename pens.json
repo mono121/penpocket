@@ -10,9 +10,9 @@ permalink: /pens.json
   "country": {{ b.country | default: "不明" | jsonify }},
   "type": {{ pen.type | jsonify }},
   "nib": {{ pen.nib | jsonify }},
-  "line_width": {{ pen.line_width | default: 0.5 }},
-  "tags": {{ pen.tags | default: empty | jsonify }},
-  "acquired": {{ pen.acquired }},
+  "line_width": {{ pen.line_width | jsonify }},
+  "tags": {% if pen.tags %}{{ pen.tags | jsonify }}{% else %}[]{% endif %},
+  "acquired": {{ pen.acquired | jsonify }},
   "url": {{ pen.url | relative_url | jsonify }}
 }{% unless forloop.last %},{% endunless %}{% endfor %}
 ]
