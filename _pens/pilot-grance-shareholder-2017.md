@@ -5,6 +5,7 @@ type: 万年筆
 acquired: 2017
 color: パイロットブルー
 nib: F
+mechanism: コンバーター式
 tags:
 - 限定品
 custom_fields:
