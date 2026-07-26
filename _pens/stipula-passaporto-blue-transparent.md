@@ -1,5 +1,5 @@
 ---
-title: パッサポルト ブルー・トランスペアレント
+title: Passaporto Blue Transparent
 brand: stipula
 type: 万年筆
 acquired: 2026

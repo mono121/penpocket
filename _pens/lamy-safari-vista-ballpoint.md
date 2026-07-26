@@ -1,5 +1,5 @@
 ---
-title: safari ボールペン vista
+title: safari vista
 brand: lamy
 type: ボールペン
 acquired: 2017

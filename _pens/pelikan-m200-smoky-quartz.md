@@ -1,5 +1,5 @@
 ---
-title: クラシック M200 スモーキークォーツ
+title: Classic M200 Smoky Quartz
 brand: pelikan
 type: 万年筆
 acquired: 2017

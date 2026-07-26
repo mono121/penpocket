@@ -1,5 +1,5 @@
 ---
-title: ギロシェ オリーブグリーン
+title: Guilloche Olive Green
 brand: graf-von-faber-castell
 type: ボールペン
 acquired: 2023

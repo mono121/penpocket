@@ -1,5 +1,5 @@
 ---
-title: テッラ アウレア・ミニマ ミニスケッチペン
+title: Aurea Minima Terra Mini Sketch Pen
 brand: aurora
 type: ペンシル
 acquired: 2025

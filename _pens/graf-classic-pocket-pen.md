@@ -1,5 +1,5 @@
 ---
-title: ポケットペン ボールペン
+title: Pocket Pen
 brand: graf-von-faber-castell
 type: ボールペン
 acquired: 2024

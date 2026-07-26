@@ -1,5 +1,5 @@
 ---
-title: ドルチェビータ パピヨン
+title: Dolcevita Papillon
 brand: delta
 type: 万年筆
 acquired: 2019

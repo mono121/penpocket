@@ -1,5 +1,5 @@
 ---
-title: swift ホワイト
+title: swift white
 brand: lamy
 type: ローラーボール
 acquired: 2016

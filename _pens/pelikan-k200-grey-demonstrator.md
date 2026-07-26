@@ -1,5 +1,5 @@
 ---
-title: クラシック K200 デモンストレーター（グレー）
+title: Classic K200 Demonstrator (Grey)
 brand: pelikan
 type: ボールペン
 acquired: 2026

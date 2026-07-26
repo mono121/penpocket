@@ -1,5 +1,5 @@
 ---
-title: スーベレーン M405 シュトレーゼマン
+title: Souverän M405 Stresemann
 brand: pelikan
 type: 万年筆
 acquired: 2019

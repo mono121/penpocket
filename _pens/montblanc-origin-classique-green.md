@@ -1,5 +1,5 @@
 ---
-title: マイスターシュテュック ジ オリジン コレクション クラシック
+title: Meisterstück The Origin Collection Classic
 brand: montblanc
 type: 万年筆
 acquired: 2024

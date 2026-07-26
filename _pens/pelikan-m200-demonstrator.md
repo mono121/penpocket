@@ -1,5 +1,5 @@
 ---
-title: クラシック M200 デモンストレーター
+title: Classic M200 Demonstrator
 brand: pelikan
 type: 万年筆
 acquired: 2025

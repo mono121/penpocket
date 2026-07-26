@@ -1,5 +1,5 @@
 ---
-title: フローレ ミスティックパープル
+title: Furore Mystic Purple
 brand: leonardo
 type: 万年筆
 acquired: 2022

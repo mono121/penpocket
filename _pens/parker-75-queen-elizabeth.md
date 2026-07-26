@@ -1,5 +1,5 @@
 ---
-title: 75 RMS クイーン・エリザベス
+title: 75 RMS Queen Elizabeth
 brand: parker
 type: 万年筆
 acquired: 2024

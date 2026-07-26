@@ -1,5 +1,5 @@
 ---
-title: The Ambassador Plain Ball Pen
+title: The Ambassador Plain
 brand: yard-o-led
 type: ボールペン
 acquired: 2026

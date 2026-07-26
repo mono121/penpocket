@@ -1,5 +1,5 @@
 ---
-title: パーフェクトペンシル 260周年アニバーサリーエディション 翡翠
+title: Perfect Pencil 260th Anniversary Edition Jade
 brand: graf-von-faber-castell
 type: パーフェクトペンシル
 acquired: 2021

@@ -1,5 +1,5 @@
 ---
-title: クラシック リミテッドエディション スネークウッド
+title: Classic Limited Edition Snakewood
 brand: graf-von-faber-castell
 type: 万年筆
 acquired: 2025

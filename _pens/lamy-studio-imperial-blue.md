@@ -1,5 +1,5 @@
 ---
-title: studio 万年筆 imperialblue
+title: studio imperialblue
 brand: lamy
 type: 万年筆
 acquired: 2013

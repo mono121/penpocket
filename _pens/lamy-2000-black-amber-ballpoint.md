@@ -1,5 +1,5 @@
 ---
-title: 2000 M ブラックアンバー 50周年アニバーサリーエディション
+title: 2000 M Black Amber 50th Anniversary Edition
 brand: lamy
 type: ボールペン
 acquired: 2016

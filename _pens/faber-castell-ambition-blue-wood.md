@@ -1,5 +1,5 @@
 ---
-title: アニバーサリー・エディション AMBITION ブルー・ウッド
+title: Ambition Anniversary Edition Blue Wood
 brand: faber-castell
 type: 万年筆
 acquired: 2025

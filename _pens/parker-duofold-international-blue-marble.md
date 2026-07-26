@@ -1,5 +1,5 @@
 ---
-title: デュオフォールド インターナショナル ブルーマーブル
+title: Duofold International Blue Marble
 brand: parker
 type: 万年筆
 acquired: 2019

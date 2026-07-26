@@ -1,5 +1,5 @@
 ---
-title: モーメントゼロ フレイム リミテッドエディション
+title: Momento Zero Flame Limited Edition
 brand: leonardo
 type: 万年筆
 acquired: 2018

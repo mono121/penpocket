@@ -1,5 +1,5 @@
 ---
-title: マイスターシュテュック 144
+title: Meisterstück 144
 brand: montblanc
 type: 万年筆
 acquired: 2020
