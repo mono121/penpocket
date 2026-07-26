@@ -29,3 +29,6 @@ exclude:
   - Gemfile.lock
   - README.md
   - vendor
+  # ローカル確認用のスクリプト。サイトの構成物ではない。
+  - build_preview.py
+  - build_variants.py
