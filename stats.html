@@ -1,0 +1,26 @@
+---
+layout: default
+title: 収集の傾向
+permalink: /stats/
+---
+<div class="wrap stats">
+  <p class="stats__summary" id="summary"></p>
+  <div class="stats__grid">
+    <section class="panel" id="p-type"><h2 class="panel__title">種類の内訳</h2><div class="panel__chart"><canvas id="chart-type"></canvas></div></section>
+    <section class="panel" id="p-country"><h2 class="panel__title">国別の本数</h2><div class="panel__chart"><canvas id="chart-country"></canvas></div></section>
+    <section class="panel panel--wide" id="p-brand">
+      <div class="panel__heading">
+        <h2 class="panel__title">ブランド別の本数</h2>
+        <p class="panel__note">上位3ブランドと、全ブランドの順位</p>
+      </div>
+      <div class="brand-leaders" id="brand-leaders"></div>
+      <ol class="brand-list" id="brand-list"></ol>
+    </section>
+    <section class="panel" id="p-tag"><h2 class="panel__title">タグの頻度</h2><div class="panel__chart"><canvas id="chart-tag"></canvas></div></section>
+    <section class="panel" id="p-year"><h2 class="panel__title">入手した年</h2><div class="panel__chart"><canvas id="chart-year"></canvas></div></section>
+    <section class="panel" id="p-cum"><h2 class="panel__title">累計本数の推移</h2><div class="panel__chart"><canvas id="chart-cum"></canvas></div></section>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="{{ '/assets/js/stats.js' | relative_url }}" defer></script>

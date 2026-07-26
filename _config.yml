@@ -1,0 +1,29 @@
+title: 筆記具コレクション
+description: 万年筆・ボールペン・シャープペンシルの収集記録
+lang: ja
+
+# GitHub Pages で公開する場合はリポジトリ名に合わせる
+# 例: https://<user>.github.io/pen-collection/ なら baseurl: "/pen-collection"
+baseurl: ""
+url: ""
+
+collections:
+  pens:
+    output: true
+    permalink: /pens/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: pens
+    values:
+      layout: pen
+
+plugins:
+  - jekyll-sitemap
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor

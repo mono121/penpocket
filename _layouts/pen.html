@@ -1,0 +1,31 @@
+---
+layout: default
+---
+{% assign b = site.data.brands[page.brand] %}
+<article class="detail">
+  <div class="wrap">
+    <a class="detail__back" href="{{ '/' | relative_url }}">&larr; 一覧に戻る</a>
+    <h2 class="detail__title">{{ page.title }}</h2>
+    <p class="detail__brand">{{ b.name | default: page.brand }}{% if b.country %} — {{ b.country }}{% endif %}</p>
+    <dl class="specs">
+      <div class="specs__row"><dt class="specs__key">種類</dt><dd class="specs__val" style="margin:0">{{ page.type }}</dd></div>
+      {% if page.color %}<div class="specs__row"><dt class="specs__key">カラー</dt><dd class="specs__val" style="margin:0">{{ page.color }}</dd></div>{% endif %}
+      {% if page.nib %}<div class="specs__row"><dt class="specs__key">字幅・ペン先</dt><dd class="specs__val" style="margin:0">{{ page.nib }}</dd></div>{% endif %}
+      {% if page.line_width %}<div class="specs__row"><dt class="specs__key">芯径・線幅</dt><dd class="specs__val" style="margin:0">{{ page.line_width }} mm</dd></div>{% endif %}
+      {% if page.mechanism %}<div class="specs__row"><dt class="specs__key">機構</dt><dd class="specs__val" style="margin:0">{{ page.mechanism }}</dd></div>{% endif %}
+      {% if page.body %}<div class="specs__row"><dt class="specs__key">軸・外装</dt><dd class="specs__val" style="margin:0">{{ page.body }}</dd></div>{% endif %}
+      {% if page.limited %}<div class="specs__row"><dt class="specs__key">限定数</dt><dd class="specs__val" style="margin:0">{{ page.limited }}</dd></div>{% endif %}
+      {% if page.commemoration %}<div class="specs__row"><dt class="specs__key">記念内容</dt><dd class="specs__val" style="margin:0">{{ page.commemoration }}</dd></div>{% endif %}
+      {% if page.accessories %}<div class="specs__row"><dt class="specs__key">付属品</dt><dd class="specs__val" style="margin:0">{{ page.accessories | join: " / " }}</dd></div>{% endif %}
+      {% if page.ink_name %}<div class="specs__row"><dt class="specs__key">インク・芯</dt><dd class="specs__val" style="margin:0">{{ page.ink_name }}</dd></div>{% endif %}
+      <div class="specs__row"><dt class="specs__key">入手</dt><dd class="specs__val" style="margin:0">{{ page.acquired }}年</dd></div>
+      {% if page.tags %}<div class="specs__row"><dt class="specs__key">タグ</dt><dd class="specs__val" style="margin:0">{{ page.tags | join: " / " }}</dd></div>{% endif %}
+      {% if page.custom_fields %}
+        {% for item in page.custom_fields %}
+          <div class="specs__row"><dt class="specs__key">{{ item.label }}</dt><dd class="specs__val" style="margin:0">{{ item.value }}</dd></div>
+        {% endfor %}
+      {% endif %}
+    </dl>
+    {% if content != '' %}<div class="note">{{ content }}</div>{% endif %}
+  </div>
+</article>

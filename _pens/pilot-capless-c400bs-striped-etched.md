@@ -1,0 +1,14 @@
+---
+title: キャップレス C-400BS ストライプ蝕刻
+brand: pilot
+type: 万年筆
+acquired: 2026
+nib: F（細字）
+tags:
+- ヴィンテージ
+custom_fields:
+- label: 発売年
+  value: 1971年
+- label: ペン先材質
+  value: 14K
+---

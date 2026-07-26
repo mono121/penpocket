@@ -1,0 +1,56 @@
+# front matter の brand: にはここのキーを使用する。
+# ブランド表記をここで一元管理し、表記ゆれを防ぐ。
+parker:
+  name: PARKER
+  country: アメリカ
+lamy:
+  name: LAMY
+  country: ドイツ
+tombow:
+  name: トンボ鉛筆
+  country: 日本
+laban:
+  name: LABAN
+  country: 台湾
+montblanc:
+  name: Montblanc
+  country: ドイツ
+leonardo:
+  name: Leonardo Officina Italiana
+  country: イタリア
+delta:
+  name: DELTA
+  country: イタリア
+zebra:
+  name: ZEBRA
+  country: 日本
+pilot:
+  name: PILOT
+  country: 日本
+rotring:
+  name: rotring
+  country: ドイツ
+faber-castell:
+  name: Faber-Castell
+  country: ドイツ
+graf-von-faber-castell:
+  name: Graf von Faber-Castell
+  country: ドイツ
+pelikan:
+  name: Pelikan
+  country: ドイツ
+platinum:
+  name: PLATINUM
+  country: 日本
+aurora:
+  name: AURORA
+  country: イタリア
+cleo-skribent:
+  name: Cleo Skribent
+  country: ドイツ
+stipula:
+  name: Stipula
+  country: イタリア
+yard-o-led:
+  name: YARD-O-LED
+  country: イギリス

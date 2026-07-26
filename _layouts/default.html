@@ -1,0 +1,42 @@
+---
+---
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'ja' }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
+<meta name="description" content="{{ page.description | default: site.description }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600&family=Zen+Kaku+Gothic+New:wght@400;500&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <h1 class="masthead__title"><a href="{{ '/' | relative_url }}" style="color:inherit;text-decoration:none">{{ site.title }}</a></h1>
+    <p class="masthead__sub">{{ site.description }}</p>
+    <svg class="masthead__stroke" viewBox="0 0 1000 34" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path d="M2 22 C 150 6 300 28 460 16 C 620 4 780 26 998 12 L 998 18 C 780 32 620 10 460 22 C 300 34 150 12 2 28 Z" fill="var(--ink-blue)" opacity="0.8"/>
+    </svg>
+    <nav class="nav">
+      <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>一覧</a>
+      <a href="{{ '/stats/' | relative_url }}"{% if page.url contains '/stats' %} aria-current="page"{% endif %}>収集の傾向</a>
+      <a href="{{ '/about/' | relative_url }}"{% if page.url contains '/about' %} aria-current="page"{% endif %}>このサイトについて</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  {{ content }}
+</main>
+
+<footer class="foot">
+  <div class="wrap">所蔵 {{ site.pens | size }} 点 / 最終更新 {{ site.time | date: "%Y-%m-%d" }}</div>
+</footer>
+
+<script>window.SITE_BASEURL = "{{ site.baseurl }}";</script>
+</body>
+</html>
