@@ -1,11 +1,13 @@
 title: 筆記具コレクション
-description: 万年筆・ボールペン・シャープペンシルの収集記録
+description: 万年筆・ボールペン・ペンシルを中心とした筆記具の収集記録
 lang: ja
 
 # GitHub Pages で公開する場合はリポジトリ名に合わせる
 # 公開先: https://mono121.github.io/penpocket/
 baseurl: "/penpocket"
-url: ""
+# jekyll-sitemap は url + baseurl で <loc> を組む。空だと相対URLになり
+# サイトマップ仕様（絶対URL必須）を満たさなくなる。
+url: "https://mono121.github.io"
 
 collections:
   pens:

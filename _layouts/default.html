@@ -5,7 +5,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
+{% comment %}型番だけのモデル名（22、144 等）はブランド名が無いと判別できない{% endcomment %}
+{% assign pen_brand = site.data.brands[page.brand] %}
+<title>{% if page.title %}{{ page.title }}{% if page.brand %} — {{ pen_brand.name | default: page.brand }}{% endif %} — {% endif %}{{ site.title }}</title>
 <meta name="description" content="{{ page.description | default: site.description }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
