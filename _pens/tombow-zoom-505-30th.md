@@ -3,6 +3,7 @@ title: ZOOM 505 30周年記念特別限定品
 brand: tombow
 type: ボールペン
 acquired: 2016
+color: シルバー
 limited: 1万本（筆記具の種類の合計）
 commemoration: ZOOMシリーズ発売30周年
 mechanism: キャップ式
