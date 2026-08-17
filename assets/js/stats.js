@@ -71,6 +71,7 @@
       return '<div class="brand-leader">' +
         '<span class="brand-leader__rank">' + String(i + 1).padStart(2, '0') + '</span>' +
         '<span class="brand-leader__name" title="' + p[0] + '">' + p[0] + '</span>' +
+        '<span class="brand-leader__lead" aria-hidden="true"></span>' +
         '<span class="brand-leader__count"><b>' + p[1] + '</b><small>本</small></span>' +
       '</div>';
     }).join('');
@@ -80,6 +81,7 @@
       return '<li class="brand-list__item">' +
         '<span class="brand-list__rank">' + String(i + 4).padStart(2, '0') + '</span>' +
         '<span class="brand-list__name" title="' + p[0] + '">' + p[0] + '</span>' +
+        '<span class="brand-list__lead" aria-hidden="true"></span>' +
         '<span class="brand-list__count">' + p[1] + '</span>' +
       '</li>';
     }).join('');
