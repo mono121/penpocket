@@ -563,15 +563,26 @@ a { color: var(--ink-blue); text-underline-offset: 3px; }
   list-style: none;
 }
 
+/* 名前が短いと本数まで200px以上空いて対応が読めなくなるため、
+   名前は実寸で置き、余った幅を点線で埋めて視線をつなぐ。 */
 .brand-list__item {
   display: grid;
-  grid-template-columns: 2rem minmax(0, 1fr) auto;
-  gap: 0.6rem;
+  grid-template-columns: 2rem minmax(0, auto) minmax(0.75rem, 1fr) auto;
+  gap: 0.5rem;
   align-items: baseline;
   min-width: 0;
   padding: 0.52rem 0;
   border-bottom: 1px solid var(--rule);
 }
+
+.brand-list__lead,
+.brand-leader__lead {
+  border-bottom: 1px dotted var(--rule-strong);
+  transform: translateY(-0.32em);
+}
+
+/* 広い画面のTOP3はカード組みなので点線は使わない */
+.brand-leader__lead { display: none; }
 
 .brand-list__rank,
 .brand-list__count {
@@ -678,7 +689,23 @@ a { color: var(--ink-blue); text-underline-offset: 3px; }
 
   .panel__heading { display: block; }
   .panel__note { white-space: normal; }
+  /* 縦積みのカードは1枚113pxで場所を取りすぎる。1行の順位表に組み替える。 */
   .brand-leaders { grid-template-columns: 1fr; }
+
+  .brand-leader {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, auto) minmax(0.75rem, 1fr) auto;
+    align-items: baseline;
+    gap: 0 0.5rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .brand-leader__rank { display: inline; }
+  .brand-leader__name { margin-top: 0; font-size: 0.95rem; }
+  .brand-leader__lead { display: block; }
+  .brand-leader__count { margin-top: 0; }
+  .brand-leader__count b { font-size: 1.2rem; }
+
   .brand-list { grid-template-columns: 1fr; }
 }
 
