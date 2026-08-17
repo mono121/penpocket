@@ -20,13 +20,25 @@
     });
   }
 
+  // 畳んだ見出しだけで「いま何で絞っているか」が読めるようにする。
+  // 件数ではなく選んだ値そのものを出し、未選択は「すべて」と言い切る。
   function heads() {
     groups.forEach(function (group) {
       var state = group.querySelector('.filters__state');
       if (!state) return;
-      var chosen = active[group.dataset.facet] || [];
-      var total = group.querySelectorAll('.chip').length;
-      state.textContent = chosen.length ? chosen.length + '件選択' : total + '件';
+      var picked = [];
+      Array.prototype.forEach.call(group.querySelectorAll('.chip'), function (chip) {
+        if (chip.getAttribute('aria-pressed') === 'true') picked.push(chip.textContent.trim());
+      });
+      if (picked.length === 0) {
+        state.textContent = 'すべて';
+      } else if (picked.length === 1) {
+        state.textContent = picked[0];
+      } else {
+        state.textContent = picked[0] + ' 他' + (picked.length - 1);
+      }
+      if (picked.length) { group.classList.add('is-filtered'); }
+      else { group.classList.remove('is-filtered'); }
     });
     if (resetButton) {
       resetButton.hidden = !Object.keys(active).some(function (facet) { return active[facet].length; });
