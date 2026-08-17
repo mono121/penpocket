@@ -592,6 +592,14 @@ a { color: var(--ink-blue); text-underline-offset: 3px; }
   color: var(--ink);
 }
 
+/* 順位を10で打ち切っていることを明示する */
+.brand-rest {
+  margin: 0.9rem 0 0;
+  font-family: var(--font-data);
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
 .foot {
   border-top: 1px solid var(--rule);
   padding: 1.5rem 0 3rem;
