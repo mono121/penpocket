@@ -172,12 +172,10 @@ const ledger = document.getElementById('ledger');
 ledger.innerHTML = PENS.map(p => `
   <a class="entry" href="#" data-slug="${{p.slug}}" data-type="${{esc(p.type)}}" data-brand="${{p.brand}}"
      data-brand-name="${{esc(p.brand_name)}}" data-acquired="${{p.acquired}}">
-    <div>
-      <p class="entry__name">${{esc(p.title)}}<span class="entry__brand">　${{esc(p.brand_name)}}</span></p>
-      <div class="entry__meta">
-        <p class="entry__spec"><span>${{esc(p.type)}}</span>${{p.nib ? `<span>${{esc(p.nib)}}</span>` : ''}}${{p.line_width ? `<span>${{p.line_width}}mm</span>` : ''}}${{p.mechanism ? `<span>${{esc(p.mechanism)}}</span>` : ''}}</p>
-        ${{(p.tags||[]).length ? `<p class="entry__tags">${{(p.tags||[]).map(t=>`<span>${{esc(t)}}</span>`).join('')}}</p>` : ''}}
-      </div>
+    <p class="entry__name"><span class="entry__title">${{esc(p.title)}}</span><span class="entry__brand">${{esc(p.brand_name)}}</span></p>
+    <div class="entry__meta">
+      <p class="entry__spec"><span>${{esc(p.type)}}</span>${{p.nib ? `<span>${{esc(p.nib)}}</span>` : ''}}${{p.line_width ? `<span>${{p.line_width}}mm</span>` : ''}}${{p.mechanism ? `<span>${{esc(p.mechanism)}}</span>` : ''}}</p>
+      ${{(p.tags||[]).length ? `<p class="entry__tags">${{(p.tags||[]).map(t=>`<span>${{esc(t)}}</span>`).join('')}}</p>` : ''}}
     </div>
   </a>`).join('') + `<p class="empty" id="empty"${{PENS.length ? ' hidden' : ''}}>${{PENS.length ? '条件に合う筆記具はありません。絞り込みを外してください。' : 'まだ筆記具が登録されていません。'}}</p>`;
 
