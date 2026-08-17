@@ -8,7 +8,7 @@ import glob, html, json, os, yaml
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
-brands = yaml.safe_load(open(os.path.join(ROOT, "_data/brands.yml")))
+brands = yaml.safe_load(open(os.path.join(ROOT, "_data/brands.yml"), encoding="utf-8"))
 
 pens = []
 for path in sorted(glob.glob(os.path.join(ROOT, "_pens/*.md"))):
