@@ -53,13 +53,12 @@
     box.hidden = !open;
   }
 
-  // 狭い画面では、チップが多くまだ選択もされていない facet だけを畳む。
-  // TYPE は7件で2行に収まるので開いたまま、BRAND のような列が対象になる。
+  // 狭い画面では未選択のグループを畳む。選択中のものは開いたままにして、
+  // 何で絞り込んでいるかが畳まれて見えなくなることを避ける。
   function syncGroups() {
     groups.forEach(function (group) {
-      var many = group.querySelectorAll('.chip').length > 10;
       var chosen = active[group.dataset.facet] || [];
-      setOpen(group, !narrow.matches || !many || chosen.length > 0);
+      setOpen(group, !narrow.matches || chosen.length > 0);
     });
   }
 
