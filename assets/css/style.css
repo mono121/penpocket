@@ -368,7 +368,8 @@ a { color: var(--ink-blue); text-underline-offset: 3px; }
 
 /* ---------- detail page ---------- */
 
-.detail { padding: 3rem 0 5rem; }
+/* .stats と同じ理由で上下だけ指定する（プレビューは class="wrap detail" を使う） */
+.detail { padding-top: 3rem; padding-bottom: 5rem; }
 .detail__back { font-size: 0.8rem; letter-spacing: 0.08em; }
 
 .detail__title {
@@ -407,7 +408,7 @@ a { color: var(--ink-blue); text-underline-offset: 3px; }
 
 /* ---------- prose page ---------- */
 
-.page { padding: 3rem 0 5rem; }
+.page { padding-top: 3rem; padding-bottom: 5rem; }
 
 .page__title {
   font-family: var(--font-display);
@@ -441,7 +442,9 @@ a { color: var(--ink-blue); text-underline-offset: 3px; }
 
 /* ---------- stats ---------- */
 
-.stats { padding: 2.5rem 0 5rem; }
+/* padding のショートハンドを使うと、class="wrap stats" のように .wrap と
+   併記されたとき左右のパディングまで 0 で上書きしてしまう。上下だけ指定する。 */
+.stats { padding-top: 2.5rem; padding-bottom: 5rem; }
 
 .stats__grid {
   display: grid;
