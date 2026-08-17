@@ -58,6 +58,8 @@
   }
 
 
+  var TOP_BRANDS = 10;
+
   function brandRanking(ps) {
     if (!panel('p-brand', ps.length > 0)) return;
 
@@ -73,13 +75,22 @@
       '</div>';
     }).join('');
 
-    list.innerHTML = ps.slice(3).map(function (p, i) {
+    // 上位10まで。残りは1〜2本のブランドが並ぶだけで順位として読む意味が薄い。
+    list.innerHTML = ps.slice(3, TOP_BRANDS).map(function (p, i) {
       return '<li class="brand-list__item">' +
         '<span class="brand-list__rank">' + String(i + 4).padStart(2, '0') + '</span>' +
         '<span class="brand-list__name" title="' + p[0] + '">' + p[0] + '</span>' +
         '<span class="brand-list__count">' + p[1] + '</span>' +
       '</li>';
     }).join('');
+
+    // 打ち切ったことを黙って隠さず、残りの数を書いておく
+    var rest = document.getElementById('brand-rest');
+    if (rest) {
+      var omitted = ps.length - TOP_BRANDS;
+      rest.hidden = omitted <= 0;
+      rest.textContent = omitted > 0 ? 'ほか ' + omitted + ' ブランド' : '';
+    }
   }
 
   function doughnut(canvasId, panelId, ps) {

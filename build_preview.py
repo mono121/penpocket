@@ -145,10 +145,11 @@ html = f"""<!DOCTYPE html>
     <section class="panel panel--wide" id="p-brand">
       <div class="panel__heading">
         <h2 class="panel__title">ブランド別の本数</h2>
-        <p class="panel__note">上位3ブランドと、全ブランドの順位</p>
+        <p class="panel__note">上位10ブランド</p>
       </div>
       <div class="brand-leaders" id="brand-leaders"></div>
       <ol class="brand-list" id="brand-list"></ol>
+      <p class="brand-rest" id="brand-rest" hidden></p>
     </section>
     <section class="panel" id="p-tag"><h2 class="panel__title">タグの頻度</h2><div class="panel__chart"><canvas id="chart-tag"></canvas></div></section>
     <section class="panel" id="p-year"><h2 class="panel__title">入手した年</h2><div class="panel__chart"><canvas id="chart-year"></canvas></div></section>
@@ -264,7 +265,12 @@ document.getElementById('sort').addEventListener('change', e => {{
 
 function show(view) {{
   ['list','detail','stats','about'].forEach(v => document.getElementById('view-' + v).hidden = v !== view);
-  document.querySelectorAll('.nav a').forEach(a => a.toggleAttribute('aria-current', a.dataset.view === view));
+  // toggleAttribute だと値が空文字になり [aria-current="page"] に一致しない。
+  // 実サイト（Jekyll が出力する aria-current="page"）と同じ値を入れる。
+  document.querySelectorAll('.nav a').forEach(a => {{
+    if (a.dataset.view === view) a.setAttribute('aria-current', 'page');
+    else a.removeAttribute('aria-current');
+  }});
   window.scrollTo(0, 0);
 }}
 document.querySelectorAll('.nav a').forEach(a => a.addEventListener('click', e => {{
@@ -324,6 +330,7 @@ function drawCharts() {{
     }});
   }};
 
+  const TOP_BRANDS = 10;
   const brandRanking = ps => {{
     if (!panel('p-brand', ps.length > 0)) return;
     const leaders = document.getElementById('brand-leaders');
@@ -334,12 +341,16 @@ function drawCharts() {{
         <span class="brand-leader__name" title="${{esc(p[0])}}">${{esc(p[0])}}</span>
         <span class="brand-leader__count"><b>${{p[1]}}</b><small>本</small></span>
       </div>`).join('');
-    list.innerHTML = ps.slice(3).map((p, i) => `
+    list.innerHTML = ps.slice(3, TOP_BRANDS).map((p, i) => `
       <li class="brand-list__item">
         <span class="brand-list__rank">${{String(i + 4).padStart(2, '0')}}</span>
         <span class="brand-list__name" title="${{esc(p[0])}}">${{esc(p[0])}}</span>
         <span class="brand-list__count">${{p[1]}}</span>
       </li>`).join('');
+    const rest = document.getElementById('brand-rest');
+    const omitted = ps.length - TOP_BRANDS;
+    rest.hidden = omitted <= 0;
+    rest.textContent = omitted > 0 ? 'ほか ' + omitted + ' ブランド' : '';
   }};
 
   const dough = (cid, pid, ps) => {{
