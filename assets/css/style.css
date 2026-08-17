@@ -77,18 +77,34 @@ a { color: var(--ink-blue); text-underline-offset: 3px; }
 
 .masthead__stroke { display: block; width: 100%; height: 34px; margin: 1.4rem 0 0; }
 
+/* 3つの行き先をタブとして見せる。現在地を下線バーで示し、
+   1つずつが押せる領域だと分かるように上下の余白で高さを確保する。 */
 .nav {
   display: flex;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--rule);
+  gap: 0.25rem;
+  margin: 1.5rem 0 0 -0.75rem;
+  border-bottom: 1px solid var(--rule);
   font-size: 0.85rem;
   letter-spacing: 0.08em;
 }
 
-.nav a { color: var(--muted); text-decoration: none; }
-.nav a:hover, .nav a[aria-current="page"] { color: var(--ink); text-decoration: underline; }
+.nav a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.8rem 0.75rem;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.nav a:hover { color: var(--ink); }
+
+.nav a[aria-current="page"] {
+  color: var(--ink);
+  font-weight: 500;
+  border-bottom-color: var(--ink-blue);
+}
+
+.nav a:focus-visible { outline: 2px solid var(--ink-blue); outline-offset: -2px; }
 
 /* ---------- filters ---------- */
 
@@ -102,11 +118,14 @@ a { color: var(--ink-blue); text-underline-offset: 3px; }
   padding: 0.6rem 0;
 }
 
+/* 畳んだ状態では、この行そのものが操作対象になる。件数と記号は補助のまま
+   淡く置き、facet 名だけを本文と同じ濃さにして見出しとして立てる。 */
 .filters__label {
   font-family: var(--font-data);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 500;
   letter-spacing: 0.16em;
-  color: var(--muted);
+  color: var(--ink);
   width: 5.5rem;
   flex-shrink: 0;
 }
@@ -124,14 +143,23 @@ a { color: var(--ink-blue); text-underline-offset: 3px; }
 }
 
 .filters__state {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-family: var(--font-data);
   font-size: 0.7rem;
   letter-spacing: 0.04em;
 }
 
+/* 絞り込み中の行は、選んだ値をブランド色で立てて区別する */
+.is-filtered .filters__state { color: var(--ink-blue); font-weight: 500; }
+
 .filters__marker {
   display: inline-block;
   font-size: 0.6rem;
+  color: var(--ink);
   transition: transform 0.12s;
 }
 
@@ -597,13 +625,14 @@ a { color: var(--ink-blue); text-underline-offset: 3px; }
   .filters { margin-top: 1.6rem; }
 
   .filters__group {
+    position: relative;
     align-items: center;
     gap: 0 0.5rem;
     padding: 0;
     border-bottom: 1px solid var(--rule);
   }
 
-  .filters__label { width: auto; }
+  .filters__label { width: auto; font-size: 0.82rem; }
 
   .filters__toggle {
     display: flex;
@@ -612,6 +641,14 @@ a { color: var(--ink-blue); text-underline-offset: 3px; }
     gap: 0.55rem;
     flex: 1;
     padding: 0.85rem 0;
+  }
+
+  /* ラベルの文字を押しても反応しないと操作方法が伝わらないので、
+     ボタンの当たり判定を行全体に広げる。 */
+  .filters__toggle::after {
+    content: "";
+    position: absolute;
+    inset: 0;
   }
 
   .filters__chips {

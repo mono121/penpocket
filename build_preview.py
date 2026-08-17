@@ -200,13 +200,18 @@ const groups = [...document.querySelectorAll('.filters__group')];
 const resetButton = document.getElementById('reset');
 const narrow = window.matchMedia('(max-width: 640px)');
 
+// 畳んだ見出しだけで「いま何で絞っているか」が読めるようにする。
 function heads() {{
   groups.forEach(group => {{
     const state = group.querySelector('.filters__state');
     if (!state) return;
-    const chosen = active[group.dataset.facet] || [];
-    const total = group.querySelectorAll('.chip').length;
-    state.textContent = chosen.length ? chosen.length + '件選択' : total + '件';
+    const picked = [...group.querySelectorAll('.chip')]
+      .filter(c => c.getAttribute('aria-pressed') === 'true')
+      .map(c => c.textContent.trim());
+    state.textContent = picked.length === 0 ? 'すべて'
+      : picked.length === 1 ? picked[0]
+      : picked[0] + ' 他' + (picked.length - 1);
+    group.classList.toggle('is-filtered', picked.length > 0);
   }});
   if (resetButton) resetButton.hidden = !Object.keys(active).some(f => active[f].length);
 }}
