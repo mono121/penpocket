@@ -5,6 +5,7 @@ Jekyll のビルドではない。Liquid は解釈せず、index.html / pen.html
 マークアップを Python 側で組み立てているだけ。見た目とJSの挙動の確認用。
 """
 import glob, html, json, os, yaml
+from collections import Counter
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
@@ -37,8 +38,9 @@ except Exception:
     paragraphs = [html.escape(p.strip()).replace("\n", "<br>") for p in _about_raw.split("\n\n") if p.strip()]
     about_html = "".join("<p>%s</p>" % p for p in paragraphs)
 
-types = sorted({p["type"] for p in pens})
-brand_keys = list(dict.fromkeys(p["brand"] for p in pens))
+# index.html と同じく本数の多い順。同数は最初に現れた順で安定させる。
+types = [t for t, _ in Counter(p["type"] for p in pens).most_common()]
+brand_keys = [k for k, _ in Counter(p["brand"] for p in pens).most_common()]
 
 html = f"""<!DOCTYPE html>
 <html lang="ja">
@@ -85,16 +87,33 @@ html = f"""<!DOCTYPE html>
 <section class="view" id="view-list">
 <div class="wrap">
   <section class="filters">
-    <div class="filters__group">
-      <span class="filters__label">TYPE</span>
+    <div class="filters__group" data-facet="type">
+      <span class="filters__label" id="label-type">TYPE</span>
+      <button type="button" class="filters__toggle" id="toggle-type"
+              aria-expanded="true" aria-controls="chips-type" aria-labelledby="label-type toggle-type">
+        <span class="filters__state"></span>
+        <span class="filters__marker" aria-hidden="true">▾</span>
+      </button>
+      <div class="filters__chips" id="chips-type">
       {"".join(f'<button type="button" class="chip" data-facet="type" data-value="{t}" aria-pressed="false">{t}</button>' for t in types)}
+      </div>
     </div>
-    <div class="filters__group">
-      <span class="filters__label">BRAND</span>
+    <div class="filters__group" data-facet="brand">
+      <span class="filters__label" id="label-brand">BRAND</span>
+      <button type="button" class="filters__toggle" id="toggle-brand"
+              aria-expanded="true" aria-controls="chips-brand" aria-labelledby="label-brand toggle-brand">
+        <span class="filters__state"></span>
+        <span class="filters__marker" aria-hidden="true">▾</span>
+      </button>
+      <div class="filters__chips" id="chips-brand">
       {"".join(f'<button type="button" class="chip" data-facet="brand" data-value="{k}" aria-pressed="false">{brands.get(k, {}).get("name", k)}</button>' for k in brand_keys)}
+      </div>
     </div>
     <div class="toolbar">
-      <p class="tally"><b id="tally-count">{len(pens)}</b> / {len(pens)} 点</p>
+      <div class="toolbar__left">
+        <p class="tally"><b id="tally-count">{len(pens)}</b> / {len(pens)} 点</p>
+        <button type="button" class="reset" id="reset" hidden>絞り込みを解除</button>
+      </div>
       <label class="tally">並び順
         <select class="sort" id="sort">
           <option value="acquired-desc">入手が新しい順</option>
@@ -176,7 +195,53 @@ function apply() {{
   }});
   tally.textContent = shown;
   empty.hidden = PENS.length === 0 ? false : shown !== 0;
+  heads();
 }}
+
+const groups = [...document.querySelectorAll('.filters__group')];
+const resetButton = document.getElementById('reset');
+const narrow = window.matchMedia('(max-width: 640px)');
+
+function heads() {{
+  groups.forEach(group => {{
+    const state = group.querySelector('.filters__state');
+    if (!state) return;
+    const chosen = active[group.dataset.facet] || [];
+    const total = group.querySelectorAll('.chip').length;
+    state.textContent = chosen.length ? chosen.length + '件選択' : total + '件';
+  }});
+  if (resetButton) resetButton.hidden = !Object.keys(active).some(f => active[f].length);
+}}
+
+function setOpen(group, open) {{
+  const toggle = group.querySelector('.filters__toggle');
+  const box = group.querySelector('.filters__chips');
+  if (!toggle || !box) return;
+  toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  box.hidden = !open;
+}}
+
+// 狭い画面では、チップが多くまだ未選択の facet だけ畳む。
+function syncGroups() {{
+  groups.forEach(group => {{
+    const many = group.querySelectorAll('.chip').length > 10;
+    const chosen = active[group.dataset.facet] || [];
+    setOpen(group, !narrow.matches || !many || chosen.length > 0);
+  }});
+}}
+
+groups.forEach(group => {{
+  const toggle = group.querySelector('.filters__toggle');
+  if (toggle) toggle.addEventListener('click', () => setOpen(group, toggle.getAttribute('aria-expanded') !== 'true'));
+}});
+
+if (resetButton) resetButton.addEventListener('click', () => {{
+  Object.keys(active).forEach(f => {{ active[f].length = 0; }});
+  document.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', 'false'));
+  apply();
+}});
+
+narrow.addEventListener('change', syncGroups);
 
 document.querySelectorAll('.chip').forEach(chip => chip.addEventListener('click', () => {{
   const list = active[chip.dataset.facet];
@@ -321,6 +386,7 @@ function drawCharts() {{
 }}
 
 apply();
+syncGroups();
 </script>
 </body>
 </html>
