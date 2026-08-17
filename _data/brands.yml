@@ -54,3 +54,18 @@ stipula:
 yard-o-led:
   name: YARD-O-LED
   country: イギリス
+geha:
+  name: GEHA
+  country: ドイツ
+sheaffer:
+  name: SHEAFFER
+  country: アメリカ
+caran-dache:
+  name: Caran d'Ache
+  country: スイス
+beyond-object:
+  name: Beyond Object
+  country: イギリス
+muji:
+  name: 無印良品
+  country: 日本
