@@ -219,12 +219,11 @@ function setOpen(group, open) {{
   box.hidden = !open;
 }}
 
-// 狭い画面では、チップが多くまだ未選択の facet だけ畳む。
+// 狭い画面では未選択のグループを畳む。選択中のものは開いたまま。
 function syncGroups() {{
   groups.forEach(group => {{
-    const many = group.querySelectorAll('.chip').length > 10;
     const chosen = active[group.dataset.facet] || [];
-    setOpen(group, !narrow.matches || !many || chosen.length > 0);
+    setOpen(group, !narrow.matches || chosen.length > 0);
   }});
 }}
 
