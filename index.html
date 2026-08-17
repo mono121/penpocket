@@ -2,29 +2,48 @@
 layout: default
 title: 一覧
 ---
-{% assign types = site.pens | map: 'type' | uniq | sort %}
-{% assign brand_keys = site.pens | map: 'brand' | uniq %}
+{% comment %}group_by の size で並べ、本数の多い順にする。同数の並びは Liquid の sort に委ねる{% endcomment %}
+{% assign type_groups = site.pens | group_by: 'type' | sort: 'size' | reverse %}
+{% assign brand_groups = site.pens | group_by: 'brand' | sort: 'size' | reverse %}
 {% assign pens = site.pens | sort: 'acquired' | reverse %}
 
 <div class="wrap">
 
   <section class="filters">
-    <div class="filters__group">
-      <span class="filters__label">TYPE</span>
-      {% for t in types %}
-        <button type="button" class="chip" data-facet="type" data-value="{{ t }}" aria-pressed="false">{{ t }}</button>
-      {% endfor %}
+    {% comment %}チップ列は既定で開いた状態。狭い画面で件数の多い facet だけ collection.js が畳む{% endcomment %}
+    <div class="filters__group" data-facet="type">
+      <span class="filters__label" id="label-type">TYPE</span>
+      <button type="button" class="filters__toggle" id="toggle-type"
+              aria-expanded="true" aria-controls="chips-type" aria-labelledby="label-type toggle-type">
+        <span class="filters__state"></span>
+        <span class="filters__marker" aria-hidden="true">▾</span>
+      </button>
+      <div class="filters__chips" id="chips-type">
+        {% for g in type_groups %}
+          <button type="button" class="chip" data-facet="type" data-value="{{ g.name }}" aria-pressed="false">{{ g.name }}</button>
+        {% endfor %}
+      </div>
     </div>
-    <div class="filters__group">
-      <span class="filters__label">BRAND</span>
-      {% for key in brand_keys %}
-        {% assign b = site.data.brands[key] %}
-        <button type="button" class="chip" data-facet="brand" data-value="{{ key }}" aria-pressed="false">{{ b.name | default: key }}</button>
-      {% endfor %}
+    <div class="filters__group" data-facet="brand">
+      <span class="filters__label" id="label-brand">BRAND</span>
+      <button type="button" class="filters__toggle" id="toggle-brand"
+              aria-expanded="true" aria-controls="chips-brand" aria-labelledby="label-brand toggle-brand">
+        <span class="filters__state"></span>
+        <span class="filters__marker" aria-hidden="true">▾</span>
+      </button>
+      <div class="filters__chips" id="chips-brand">
+        {% for g in brand_groups %}
+          {% assign b = site.data.brands[g.name] %}
+          <button type="button" class="chip" data-facet="brand" data-value="{{ g.name }}" aria-pressed="false">{{ b.name | default: g.name }}</button>
+        {% endfor %}
+      </div>
     </div>
 
     <div class="toolbar">
-      <p class="tally"><b id="tally-count">{{ pens | size }}</b> / {{ pens | size }} 点</p>
+      <div class="toolbar__left">
+        <p class="tally"><b id="tally-count">{{ pens | size }}</b> / {{ pens | size }} 点</p>
+        <button type="button" class="reset" id="reset" hidden>絞り込みを解除</button>
+      </div>
       <label class="tally">並び順
         <select class="sort" id="sort">
           <option value="acquired-desc">入手が新しい順</option>
