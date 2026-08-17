@@ -67,11 +67,12 @@ title: 一覧
         {% comment %}.entry はグリッド。タイトル・ブランド・仕様行を直接の子にするため、囲みの div は置かない{% endcomment %}
         <p class="entry__name"><span class="entry__title">{{ pen.title }}</span><span class="entry__brand">{{ b.name | default: pen.brand }}</span></p>
         <div class="entry__meta">
+          {% comment %}同じ見た目で並ぶとどれが種類か分からないため、項目ごとに区分を持たせて濃さを変える{% endcomment %}
           <p class="entry__spec">
-            <span>{{ pen.type }}</span>
-            {% if pen.nib %}<span>{{ pen.nib }}</span>{% endif %}
-            {% if pen.line_width %}<span>{{ pen.line_width }}mm</span>{% endif %}
-            {% if pen.mechanism %}<span>{{ pen.mechanism }}</span>{% endif %}
+            <span class="entry__type">{{ pen.type }}</span>
+            {% if pen.nib %}<span class="entry__nib">{{ pen.nib }}</span>{% endif %}
+            {% if pen.line_width %}<span class="entry__nib">{{ pen.line_width }}mm</span>{% endif %}
+            {% if pen.mechanism %}<span class="entry__mech">{{ pen.mechanism }}</span>{% endif %}
           </p>
           {% comment %}Jekyll は tags を [] で補うため、空配列が真になる Liquid では件数で判定する{% endcomment %}
           {% if pen.tags.size > 0 %}<p class="entry__tags">{% for t in pen.tags %}<span>{{ t }}</span>{% endfor %}</p>{% endif %}

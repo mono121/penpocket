@@ -174,7 +174,7 @@ ledger.innerHTML = PENS.map(p => `
      data-brand-name="${{esc(p.brand_name)}}" data-acquired="${{p.acquired}}">
     <p class="entry__name"><span class="entry__title">${{esc(p.title)}}</span><span class="entry__brand">${{esc(p.brand_name)}}</span></p>
     <div class="entry__meta">
-      <p class="entry__spec"><span>${{esc(p.type)}}</span>${{p.nib ? `<span>${{esc(p.nib)}}</span>` : ''}}${{p.line_width ? `<span>${{p.line_width}}mm</span>` : ''}}${{p.mechanism ? `<span>${{esc(p.mechanism)}}</span>` : ''}}</p>
+      <p class="entry__spec"><span class="entry__type">${{esc(p.type)}}</span>${{p.nib ? `<span class="entry__nib">${{esc(p.nib)}}</span>` : ''}}${{p.line_width ? `<span class="entry__nib">${{p.line_width}}mm</span>` : ''}}${{p.mechanism ? `<span class="entry__mech">${{esc(p.mechanism)}}</span>` : ''}}</p>
       ${{(p.tags||[]).length ? `<p class="entry__tags">${{(p.tags||[]).map(t=>`<span>${{esc(t)}}</span>`).join('')}}</p>` : ''}}
     </div>
   </a>`).join('') + `<p class="empty" id="empty"${{PENS.length ? ' hidden' : ''}}>${{PENS.length ? '条件に合う筆記具はありません。絞り込みを外してください。' : 'まだ筆記具が登録されていません。'}}</p>`;
