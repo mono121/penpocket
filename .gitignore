@@ -7,3 +7,5 @@ vendor/
 .bundle/
 preview.html
 candidate-*.html
+memo.txt
+
